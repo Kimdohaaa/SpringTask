@@ -19,7 +19,7 @@ const findR = () => {
                         <td>${item.rdate}</td>
                         <td>${item.rtime}</td>
                         <td>
-                            <button onclick="rUpdate(${item.rno})">수정</button>
+                            <button onclick="rUpdate(${item.rno}, ${item.dno})">수정</button>
                             <button onclick="rDelete(${item.rno})">삭제</button>
                         </td>
                     </tr>
@@ -34,10 +34,42 @@ const findR = () => {
 findR();
 
 // [1-2] 예약 수정
-const rUpdate = (rno) => {
-    let rtime = prompt("수정할 시간 : ")
-    let rdate = prompt("수정할 날짜 : ")
+const rUpdate = (rno, dno) => {
+    let rdate = prompt("수정할 날짜 (YYYY-MM-DD) : ");
+    let rtime = prompt("수정할 시간 0시~24시 : ")
 
+    // 날짜 형식이 YYYY-MM-DD인지 확인
+    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+    // 날짜가 유효한지 확인
+    const dateParts = rdate.split('-');
+    const year = parseInt(dateParts[0]);
+    const month = parseInt(dateParts[1]) - 1;
+    const day = parseInt(dateParts[2]);
+
+    const date = new Date(year, month, day);
+
+    if(rtime == '' || rdate == ''){
+        alert('모든 항목을 입력하세요');
+        return;
+    }
+
+    if (!datePattern.test(rdate)) {
+        alert("유효하지 않은 날짜 형식입니다. 예시: 2025-12-12");
+        return;
+    }
+    if(date.getFullYear()!== year || date.getMonth()!== month || date.getDate()!== day){
+        alert('실제 존재하는 날짜를 입력해주세요.')
+        return;
+    }
+    if(rtime < 0 || rtime > 23){
+        alert('시간은 1시~24시 사이여야합니다.')
+        return;
+    }
+    const existingR = reservationData.find(rData => rData.rdate === rdate && rData.rtime === rtime && rData.dno === parseInt(dno) )
+    if(existingR){
+        alert("이미 예약된 시간입니다.")
+        return
+    }
     const obj = {rno,rtime,rdate}
 
     axios.put('/reservation', obj)
@@ -148,7 +180,7 @@ const addM = () => {
     let mphone = document.querySelector('#mphone').value;
 
 
-console.log(mphone)
+    console.log(mphone)
     if(mname == "" || mphone == ""){
         alert("모든 항목을 입력하세요.")
         return;
