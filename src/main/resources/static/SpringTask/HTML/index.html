@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3> 예약 현황 </h3>
+
+    <table border="1" style="border-collapse : collapse;">
+        <thead>
+            <tr>
+                <th>예약번호</th>
+                <th>환자명</th>
+                <th>담당의사</th>
+                <th>예약날짜</th>
+                <th>예약시간</th>
+                <th>비고</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <h3> 예약 </h3>
+    <div class="choose">
+        환자 : <select class="chooseM"></select>
+        <br/>
+        의사 : <select class="chooseD"></select>
+        <br/>
+        날짜 : <input type="date" class="addRdate"/>
+        <br/>
+        시간 : <select class="chooseTime"></select>
+
+        <button type="button" onclick="addR()"> 예약 </button>
+    </div>
+    <hr>
+    <h3> 환자 등록 </h3>
+    환자이름 : <input type="text" id="mname"/>
+    <br>
+    환자번호 : <input type="text" id="mphone"/>
+    <button type="button" onclick="addM(document.querySelector('#mphone').value)">등록</button>
+
+
+    <h3> 환자 내역 (환자별 예약목록 조회 시 환자이름을 클릭하세요.) </h3>
+    <table border="1" style="border-collapse : collapse;">
+            <thead>
+                <tr>
+                    <th>환자번호</th>
+                    <th>환자이름</th>
+                    <th>환자번호</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody class="memberbox">
+
+            </tbody>
+    </table>
+    <div class="detailMN">
+    </div>
+    <div class="detailM">
+        <table class="membertable" border="1" style="border-collapse : collapse;">
+            <thead class="memberhead">
+
+            </thead>
+            <tbody class="memberbody">
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <hr>
+    <h3> 의사 등록 </h3>
+    의사이름 : <input type="text" id="dname"/>
+    <br>
+    진료과 : <input type="text" id="pname"/>
+    <button type="button"  onclick="addD()"> 등록 </button>
+    <h3> 의사 내역 </h3>
+    <table border="1" style="border-collapse : collapse;">
+        <thead>
+        <tr>
+            <th>의사번호</th>
+            <th>의사이름</th>
+            <th>진료과</th>
+            <th>비고</th>
+        </tr>
+        </thead>
+        <tbody class="doctorbox">
+
+        </tbody>
+    </table>
+    <div class="detailDN">
+    </div>
+    <div class="detailD">
+        <table border="1" style="border-collapse : collapse;">
+            <thead class="doctorhead">
+
+            </thead>
+            <tbody class="doctorbody">
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../JS/index.js"></script>
+</body>
+</html>
