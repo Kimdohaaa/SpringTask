@@ -351,6 +351,7 @@ const dDeleteD = (dno) => {
     }
 }
 
+// 예약을 위한 의사,환자 내역
 const findList = async () => {
     try {
         let [dList, mList] = await Promise.all([
@@ -393,6 +394,7 @@ const list = (dList, mList) => {
 
 findList();
 
+// 시간 반복문
 const time = () => {
     let chooseTime = document.querySelector('.chooseTime');
     html = '';
@@ -407,7 +409,7 @@ const time = () => {
 
 time();
 
-// [] 예약 등록
+// 예약 등록
 const addR = () => {
     let mno = document.querySelector('.chooseM').value;
     let dno = document.querySelector('.chooseD').value;
